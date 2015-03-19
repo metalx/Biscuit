@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg1"
+    android:orientation="vertical" >
+
+    <sjtu.promised.puzzle.SurviveView
+        android:id="@+id/puzzle_board"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:keepScreenOn="true" />
+
+	<TextView android:id="@+id/text_random"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor = "#000000"
+		android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+	<ProgressBar
+	    android:id="@+id/pb1"
+	    style="?android:attr/progressBarStyleHorizontal"
+	    android:layout_width="280dip"
+	    android:layout_height="wrap_content"
+	    android:scrollbarAlwaysDrawHorizontalTrack="true" />
+
+	<TextView android:id="@+id/text_score_first"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textColor = "#000000"
+	    android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+	<Button
+	    android:id="@+id/start_button"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="开始" />
+
+	<Button
+	    android:id="@+id/pause"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="right"
+	    android:text="暂停" />
+	
+	<Button
+	    android:id="@+id/resume"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="right"
+	    android:text="恢复" />
+
+</LinearLayout>
