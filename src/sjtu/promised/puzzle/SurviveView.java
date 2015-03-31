@@ -151,13 +151,12 @@ protected void onClickCell() {
 						}else{
 							mSecondCell = mSelectedCell;
 							mSelectedCell = null;
-							//mPlayActivity.getHint(1);
 							invalidate();
 						}
 					}
 				} else {
 					mClickedCell = null;
-					mSecondCell = null; //ÐÂ¼Ó
+					mSecondCell = null;
 					invalidate();
 				}
 				
@@ -185,7 +184,6 @@ protected void onClickCell() {
 		for (int row = 0; row < mSize; row++) {
 			for (int col = 0; col < mSize; col++) {
 				Cell cell = mCells.getCell(row, col);
-				//cell.RefreshRandomValue();
 				
 				float cellLeft = (col * mCellWidth) + paddingLeft;
 				float cellTop = (row * mCellHeight) + paddingTop;
@@ -199,17 +197,6 @@ protected void onClickCell() {
 			}
 		}
 		
-		// draw lines
-		/*
-		for (int c = 0; c <= mSize; c++) {
-			float x = (c * mCellWidth) + paddingLeft;
-			canvas.drawLine(x, paddingTop, x, height, mLineColor);
-		}
-		
-		for (int r = 0; r <= mSize; r++) {
-			float y = r * mCellHeight + paddingTop;
-			canvas.drawLine(paddingLeft, y, width, y, mLineColor);
-		}  */
 		
 	}
 	
@@ -248,13 +235,7 @@ protected void onClickCell() {
 	   				Bitmap mBitmap = BitmapFactory.decodeStream(is4);
 	   				canvas.drawBitmap(mBitmap, left+ mCellWidth/4, top+ mCellHeight/4, p);
 	   			} 
-	           /*else{
-	             	InputStream is5 = getResources().openRawResource(R.drawable.picicon_4) ;
-	      			Bitmap mBitmap = BitmapFactory.decodeStream(is5);
-
-	      			canvas.drawBitmap(mBitmap, left+ mCellWidth/4, top+ mCellHeight/4, p);
-	             }*/
-	      		}
+	      	}
 	    }
 
 	
@@ -313,13 +294,10 @@ protected void onClickCell() {
 
         setMeasuredDimension(width, height);
         
-     //   float cellTextSize = mCellHeight * 0.75f;
         float cellTextSize = mCellHeight * 0.3f;
         mCellValueColor.setTextSize(cellTextSize);
         mCellValueColorReadonly.setTextSize(cellTextSize);
         
-     //   mNumberLeft = (mCellWidth - mCellValueColor.measureText("0")) / 2;
-     //   mNumberTop = (mCellHeight - mCellValueColor.getTextSize()) / 2;
         mNumberLeft = (mCellWidth - mCellValueColor.measureText("0"));
         mNumberTop = (mCellHeight - mCellValueColor.getTextSize());
         
@@ -358,16 +336,12 @@ protected void onClickCell() {
 	}
 	
 	private void updateScore() {
-		//int valid_clicked = mClickedCell.isValid();
-		//int valid_selected = mSelectedCell.isValid(); 
+
 		
 		mClickedCell.updateValue2(mSurvive.getRandom());
 		mSelectedCell.updateValue2(mSurvive.getRandom());
-		//int tScore = mScore;
-			
-		//if (valid_clicked == 0) {
+
 		mScore = mScore + mClickedCell.isValid();
-		//}
 		
 		if(!(mClickedCell.isValid() == 0)) {
 			if(mClickedCell.isValid() == 2)

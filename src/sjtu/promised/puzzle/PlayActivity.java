@@ -69,7 +69,6 @@ public class PlayActivity extends Activity {
         OnClickListener btnClick;
     	btnClick = new OnClickListener(){
 			public void onClick(View v){
-           //	Toast.makeText(   PlayActivity.this, "你点了我", Toast.LENGTH_LONG).show();
 	        getHint(3);
 			}
 		};		
@@ -98,12 +97,11 @@ public class PlayActivity extends Activity {
 			if(warnFirst == true )
 			{
 			toast = Toast.makeText(getApplicationContext(),
-					"你，你，你，不能乱点！只能点相邻的！", Toast.LENGTH_LONG);
+					"Hey man！You can only select adjacent biscuits", Toast.LENGTH_LONG);
 		    toast.setGravity(Gravity.BOTTOM, 0, 0);
 		    toast.show();
 		    warnFirst = false;
 			}
-	//		Toast.makeText( this, "你，你，你，不能乱点！只能点相邻的！", Toast.LENGTH_LONG).show();
 			if(StartActivity.soundOn == true)
 			{
 		    mp = MediaPlayer.create(this, R.drawable.badsound);
@@ -124,7 +122,7 @@ public class PlayActivity extends Activity {
 		case 2:	{
 			int player = 3 - mBoard.getPlayer();
 			toast = Toast.makeText(getApplicationContext(),
-					"游戏结束，恭喜玩家"+ player +"赢了", Toast.LENGTH_LONG);
+					"End! Player"+ player +"Win", Toast.LENGTH_LONG);
 		    toast.setGravity(Gravity.CENTER, 0, 0);
 		    toast.show();
 		    if(StartActivity.soundOn == true)
@@ -155,24 +153,15 @@ public class PlayActivity extends Activity {
 			mTextRandom.setText("Number: " + Integer.toString(mRandom));
 			mBoard.setActive(true);
 			mStart.setEnabled(false);
-			/*
-			toast = Toast.makeText(getApplicationContext(),
-				     "您投出的数字是"+mRandom, Toast.LENGTH_LONG);
-				   toast.setGravity(Gravity.CENTER, 0, 0);
-				   LinearLayout toastView = (LinearLayout) toast.getView();
-				   ImageView imageCodeProject = new ImageView(getApplicationContext());
-				   imageCodeProject.setImageResource(R.drawable.number);
-				   toastView.addView(imageCodeProject, 0);
-				   toast.setDuration(0);
-				   toast.show();  */
+
 			LayoutInflater inflater = getLayoutInflater();
 			   View layout = inflater.inflate(R.layout.dialog,
 			     (ViewGroup) findViewById(R.layout.dialog));
 
 
 
-			   new AlertDialog.Builder(this).setTitle("您投出的数字是"+mRandom ).setView(layout)
-			     .setPositiveButton("确定", null)
+			   new AlertDialog.Builder(this).setTitle("The number is: "+mRandom ).setView(layout)
+			     .setPositiveButton("Ok", null)
 			     .show();
 
 	
@@ -199,8 +188,6 @@ public class PlayActivity extends Activity {
 	}
 	
 	public void finished() {
-	//	int player = 3 - mBoard.getPlayer();
-	//	Toast.makeText( this, "游戏结束，恭喜玩家"+ player +"赢了", Toast.LENGTH_LONG).show();
 		getHint(2);
 		Intent intent = new Intent(); 
 		intent.setClass(this, StartActivity.class);

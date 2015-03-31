@@ -35,10 +35,8 @@ public class Survive extends Activity {
 	
 	private int mRandom;
 	
-	//private int time_history;
 	private int time_total = 60000;
 	private long while_counting = time_total;
-	//private Handler msghandler;
 	private CountDownTimer cdt;
 	private boolean IsTimeOut = false;
 	private int maxTime = 66000;
@@ -48,9 +46,7 @@ public class Survive extends Activity {
 	private Button mStart;
 	private Button mPause;
 	private ProgressBar pb1;
-	//private Toast toast;
 	private MediaPlayer mp;
-	//private AlertDialog.Builder builder;
 	
 	public int getRandom() {
 		return mRandom;
@@ -68,10 +64,8 @@ public class Survive extends Activity {
         mStart = (Button)findViewById(R.id.start_button);
         mPause = (Button)findViewById(R.id.pause);
         pb1 =(ProgressBar)findViewById(R.id.pb1);
-    	//pb1.setHorizontalScrollBarEnabled(true);
     	pb1.setIndeterminate(false);
     	pb1.setMax(maxTime);
-    	//change: time limit to time_total
     	pb1.setProgress((int)while_counting);
     	
     	progressbar_timing();
@@ -80,7 +74,6 @@ public class Survive extends Activity {
         OnClickListener btnClick,btnClick2;
     	btnClick = new OnClickListener(){
 			public void onClick(View v){
-			//	Toast.makeText(   PlayActivity.this, "ƒ„µ„¡ÀŒ“", Toast.LENGTH_LONG).show();
 				getHint();
 			}
 		};		
@@ -89,9 +82,6 @@ public class Survive extends Activity {
 					cdt.cancel();
 					mBoard.Alert();
         		}
-					//mStart.setClickable(false);
-					//mPause.
-					//mBoard.setActive(false);
 		};
 		mStart.setOnClickListener(btnClick);
 		mPause.setOnClickListener(btnClick2);
@@ -111,10 +101,7 @@ public class Survive extends Activity {
 	}
 	public void finished() {
 		mBoard.Alert2(mBoard.getScore());
-		//Toast.makeText( this, "game over,the score is£¨"+ mBoard.getScore(), Toast.LENGTH_LONG).show();
-		//Intent intent = new Intent(); 
-		//intent.setClass(this, Survive.class);
-		//startActivity(intent);
+
  		this.finish();
 	}
 	
@@ -122,16 +109,12 @@ public class Survive extends Activity {
 		cdt = new CountDownTimer(while_counting, 1000) {
 
 		     public void onTick(long millisUntilFinished) {
-		    	 //Message msg_2= new Message();
-		    	// msg_2.what = TIME_NOTIFICATION;
+
 		    	 while_counting = millisUntilFinished;
 		    	 pb1.setProgress((int)while_counting);
-				 //msghandler.sendMessage(msg_2);
 		     }
 		     public void onFinish() {
-		    	//IsTimeOut = true;
 		    	 mBoard.Alert2(mBoard.getScore());
-		    	 //this.cancel();
 		     }
 		  }.start();
 		  
@@ -146,16 +129,11 @@ public class Survive extends Activity {
 			cdt = new CountDownTimer(while_counting, 1000) {
 
 				public void onTick(long millisUntilFinished) {
-		    	 //Message msg_2= new Message();
-		    	// msg_2.what = TIME_NOTIFICATION;
 					while_counting = millisUntilFinished;
 					pb1.setProgress((int)while_counting);
-				 //msghandler.sendMessage(msg_2);
 				}
 				public void onFinish() {
-					//IsTimeOut = true;
 					 mBoard.Alert2(mBoard.getScore());
-					//this.cancel();
 				}
 			}.start();
 			Toast.makeText(Survive.this, tm + "seconds", Toast.LENGTH_SHORT).show();

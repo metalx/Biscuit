@@ -22,19 +22,19 @@ public class BoardViewSingle extends View {
 	private static final int DEFAULT_BOARD_LENGTH = 100;
 	private static final int DEFAULT_BOARD_SIZE = 3;
 	
-	private static int mSize = DEFAULT_BOARD_SIZE;//格子的行数
+	private static int mSize = DEFAULT_BOARD_SIZE;//Row numbers
 	
-	private boolean mActive;//标记活动状态
-	private boolean mSecond;//标记当前是否是第二个玩家的活动时间
+	private boolean mActive;//State of Activity
+	private boolean mSecond;//Is the second player
 	
-	public Cell mClickedCell;//第一个选中的饼干
-	public Cell mSelectedCell;//第二个选中的饼干
-	public Cell mSecondCell = null;//合法的第二个选中的饼干(与第一个饼干毗邻)
+	public Cell mClickedCell;//First selected biscuit
+	public Cell mSelectedCell;//Second selected biscuit
+	public Cell mSecondCell = null;//Legal second selected biscuit(Adjacent with the first selected biscuit)
 	
-	private CellCollection mCells;//声明格子对象
+	private CellCollection mCells;//Cell Object
 	
-	private int mScoreFirst;//玩家的分数
-	private int mScoreSecond;//电脑玩家的分数
+	private int mScoreFirst;//Player's Score
+	private int mScoreSecond;//CPU's Score
 	
 	private float mCellWidth;
 	private float mCellHeight;
@@ -54,17 +54,16 @@ public class BoardViewSingle extends View {
 	private boolean isDisappear = false;
 
 	
-	//设置当前饼干格子的活动状态
+	//Set current state of Biscuit Cell
 	public void setActive(boolean active){
 		mActive = active;
 	}
 	
-	//构造函数
+	//Construct method
 	public BoardViewSingle(Context context) {
 		this(context, null);
 	}
 	
-	//构造函数
 	public BoardViewSingle(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		
@@ -116,24 +115,24 @@ public class BoardViewSingle extends View {
 		return mCellWidth;
 	}
 	
-	//返回当前活动的玩家ID
+	//Return current player's ID
 	public int getPlayer() {
 		if(mSecond) return 2;
 		else return 1;
 	}
 	
-	//返回真人玩家的分数
+	//Return Player's score
 	public int getScoreFirst() {
 		return mScoreFirst;
 	}
 	
-	//返回电脑玩家的分数
+	//return Bot's score
 	public int getScoreSecond() {
 		return mScoreSecond;
 	}
 	
-	//这个函数通过一系列的逻辑运算，既可以在确定第一个选定的饼干时调用，也可以在确定第二个饼干时调用。
-	//最后分别确定了选定的两个饼干。
+	//This function is called when selecting the first biscuit or second biscuit.
+	//Finally the two biscuit will be determined.
 protected void onClickCell() {
 
 		
@@ -157,7 +156,7 @@ protected void onClickCell() {
 					}
 				} else {
 					mClickedCell = null;
-					mSecondCell = null; //新加
+					mSecondCell = null; 
 					invalidate();
 				}
 				
@@ -170,7 +169,7 @@ protected void onClickCell() {
 		
 	}
 	
-	//覆写的onDraw函数，调用下面两个函数画出了饼干和其右下角的数字
+	//Overrride OnDraw. Draw biscuits and value of biscuits.
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
@@ -197,7 +196,7 @@ protected void onClickCell() {
 		}
 	}
 	
-	//画出每个饼干
+	//Draw all biscuits.
 	protected void onDrawCell(Canvas canvas, Cell cell, float left, float top) {
 		   Paint p = new Paint();
         p.setColor(Color.RED);
@@ -242,7 +241,7 @@ protected void onClickCell() {
 	      			}
 	    }
 	
-	//画出每个饼干右下角的分数
+	//Draw values of all biscuits
 	protected void onDrawCellValue(Canvas canvas, Cell cell, float left, float top) {
 		canvas.drawText(Integer.toString(cell.getValue()), left, top, (cell.isValid() == 0) ? mCellValueColor : mCellValueColorReadonly);
 	}
@@ -333,7 +332,7 @@ protected void onClickCell() {
 		mPlayActivity = playActivitySingle;
 	}
 
-	//设置格子大小饼干多少
+	//Set Cell's Size and Number of Biscuits.
 	public static void setSize(int size) {
 		mSize = size;
 	}
@@ -377,13 +376,10 @@ protected void onClickCell() {
 		}
 	}
 	
-	//模拟电脑玩家操作的函数
+	//Simulate Bot's operations.
 	private void robotFinger(Random mGenerator, int mRandom)
 	{
 		boolean isFound = false;
-		//boolean breakRow = false;
-		//Random mGenerator = new Random();
-		//int mRandom = mGenerator.nextInt(8) + 1;
 		toastAndTwinkle(mRandom);
 		Cell checkCell;
 		for(int row = 0; row < mSize; row++){
@@ -499,7 +495,6 @@ protected void onClickCell() {
 				checkCell.updateValue(mRandom);
 				checkCell = mCells.getCell(randomRow, randomCol - 1);
 				checkCell.updateValue(mRandom);
-				//toastAndTwinkle(mRandom);
 				rowA = randomRow;
 				colA = randomCol;
 				rowB = randomRow;
@@ -510,7 +505,6 @@ protected void onClickCell() {
 				checkCell.updateValue(mRandom);
 				checkCell = mCells.getCell(randomRow, randomCol + 1);
 				checkCell.updateValue(mRandom);
-				//toastAndTwinkle(mRandom);
 				rowA = randomRow;
 				colA = randomCol;
 				rowB = randomRow;
@@ -522,14 +516,11 @@ protected void onClickCell() {
 		mPlayActivity.updateViews();
 	}
 	
-	//对电脑玩家掷出的筛子数和所吃的饼干进行提示和闪烁处理
+	//Twinkle for Bot's dice number and selected biscuits.
 	private void toastAndTwinkle(int mRandom){
-		/*
-		Toast.makeText(mPlayActivity, "Robot just tossed the number " + Integer.toString(mRandom) + ".", Toast.LENGTH_LONG).show();
-		*/
+		
 
 		mPlayActivity.getHint(4);
-	//	mPlayActivity.Twinkle();
 	
 	}
 	
@@ -541,7 +532,7 @@ protected void onClickCell() {
 	{
 		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 		if(mScoreFirst > mScoreSecond) {	
-			builder.setMessage("游戏结束，你赢了")  
+			builder.setMessage("End. You Win!")  
 			.setCancelable(false)  
 			.setNeutralButton("ok", new DialogInterface.OnClickListener() {  
 				public void onClick(DialogInterface dialog, int id) {  
@@ -552,7 +543,7 @@ protected void onClickCell() {
 			alert.show();
 		}
 		else {
-			builder.setMessage("不好意思，你输了")  
+			builder.setMessage("Sorry, You Lose")  
 			.setCancelable(false)  
 			.setNeutralButton("ok", new DialogInterface.OnClickListener() {  
 				public void onClick(DialogInterface dialog, int id) {  
@@ -566,7 +557,7 @@ protected void onClickCell() {
 	public void Alert2(final Random mGenerator, final int mRandom)
 	{
 		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());	
-			builder.setMessage("电脑华丽的掷出了"+mRandom + "= =")  
+			builder.setMessage("The Bot roll out "+mRandom + "^-^")  
 			.setCancelable(false)  
 			.setNeutralButton("ok", new DialogInterface.OnClickListener() {  
 				public void onClick(DialogInterface dialog, int id) {  

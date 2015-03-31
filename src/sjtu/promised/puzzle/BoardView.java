@@ -150,7 +150,7 @@ public class BoardView extends View {
 					}
 				} else {
 					mClickedCell = null;
-					mSecondCell = null; //ÐÂ¼Ó
+					mSecondCell = null; 
 					invalidate();
 				}
 				
@@ -168,9 +168,6 @@ public class BoardView extends View {
 		mCanvas=canvas;
 		super.onDraw(mCanvas);
 		
-		
-//		int width = getWidth() - getPaddingRight();
-//		int height = getHeight() - getPaddingBottom();
 
 		int paddingLeft = getPaddingLeft();
 		int paddingTop = getPaddingTop();
@@ -196,18 +193,6 @@ public class BoardView extends View {
 			}
 		}
 		
-		
-		// draw lines
-		/*
-		for (int c = 0; c <= mSize; c++) {
-			float x = (c * mCellWidth) + paddingLeft;
-			canvas.drawLine(x, paddingTop, x, height, mLineColor);
-		}
-		
-		for (int r = 0; r <= mSize; r++) {
-			float y = r * mCellHeight + paddingTop;
-			canvas.drawLine(paddingLeft, y, width, y, mLineColor);
-		}  */
 		
 	}
 	
@@ -316,13 +301,10 @@ public class BoardView extends View {
 
         setMeasuredDimension(width, height);
         
-     //   float cellTextSize = mCellHeight * 0.75f;
         float cellTextSize = mCellHeight * 0.3f;
         mCellValueColor.setTextSize(cellTextSize);
         mCellValueColorReadonly.setTextSize(cellTextSize);
         
-     //   mNumberLeft = (mCellWidth - mCellValueColor.measureText("0")) / 2;
-     //   mNumberTop = (mCellHeight - mCellValueColor.getTextSize()) / 2;
         mNumberLeft = (mCellWidth - mCellValueColor.measureText("0"));
         mNumberTop = (mCellHeight - mCellValueColor.getTextSize());
         
@@ -343,12 +325,10 @@ public class BoardView extends View {
 				case MotionEvent.ACTION_DOWN:
 				case MotionEvent.ACTION_MOVE:
 					mSelectedCell = getCellAtPoint(x, y);
-				//	invalidate();
 					return true;
 				case MotionEvent.ACTION_UP:
 					mSelectedCell = getCellAtPoint(x, y);
 					onClickCell();
-				//	invalidate();
 					return true;
 			}
 		}
@@ -396,14 +376,6 @@ public class BoardView extends View {
 		
 		
 		
-		/*
-		else if (!mSelectedCell.isValid() && valid_selected) {
-			if (mSecond) {
-				mScoreSecond++;
-				mScoreFirst++;
-			}
-		}  */
-		
 		mActive = false;
 		mSecond = !mSecond;	
 
@@ -416,8 +388,7 @@ public class BoardView extends View {
 		if (mScoreFirst>=5 || mScoreSecond>=5)
 		{
 			mPlayActivity.getHint(2);
-	//		android.os.Process.killProcess(android.os.Process.myPid()) ;
-			}
+		}
 	}
 
 

@@ -60,7 +60,7 @@ public class PlayActivitySingle extends Activity {
         updateViews();
 	}
 	
-	//更新界面(不用修改)
+	//Refresh View
 	public void updateViews() {
      	mTextRandom.setText("");
 		mTextScoreFirst.setText("  Your Score: " + Integer.toString(mBoard.getScoreFirst()));
@@ -73,12 +73,9 @@ public class PlayActivitySingle extends Activity {
 		warnFirst = true;
 	}
 	
-	//结束信息(不用修改)
+	//Ending Information
 	public void finished() {
 		mBoard.Alert();
-		//Intent intent = new Intent(); 
-		//intent.setClass(this, StartActivity.class);
-		//startActivity(intent);
 		this.finish();
 	}
 
@@ -124,12 +121,11 @@ public class PlayActivitySingle extends Activity {
 			if(warnFirst == true )
 			{
 			toast = Toast.makeText(getApplicationContext(),
-					"你，你，你，不能乱点！只能点相邻的！", Toast.LENGTH_LONG);
+					"Hey man！You can only select adjacent biscuits", Toast.LENGTH_LONG);
 		    toast.setGravity(Gravity.BOTTOM, 0, 0);
 		    toast.show();
 		    warnFirst = false;
 			}
-	//		Toast.makeText( this, "你，你，你，不能乱点！只能点相邻的！", Toast.LENGTH_LONG).show();
 			if(StartActivity.soundOn == true)
 			{
 			mp = MediaPlayer.create(this, R.drawable.badsound);
@@ -150,7 +146,7 @@ public class PlayActivitySingle extends Activity {
 		case 2:	{
 			int player = 3 - mBoard.getPlayer();
 			toast = Toast.makeText(getApplicationContext(),
-					"游戏结束，恭喜玩家"+ player +"赢了", Toast.LENGTH_LONG);
+					"End. Player"+ player +"Win", Toast.LENGTH_LONG);
 		    toast.setGravity(Gravity.CENTER, 0, 0);
 		    toast.show();
 		    if(StartActivity.soundOn == true)
@@ -189,7 +185,7 @@ public class PlayActivitySingle extends Activity {
 
 
 
-			  new AlertDialog.Builder(this).setTitle("您投出的数字是"+mRandom ).setView(layout)
+			  new AlertDialog.Builder(this).setTitle("The number is"+mRandom ).setView(layout)
 			     .setNeutralButton("ok",null).show();
 	
 			  if(StartActivity.soundOn == true)
@@ -218,32 +214,7 @@ public class PlayActivitySingle extends Activity {
 			mTextRandom.setText("Number: " + Integer.toString(mRandom));
 			mBoard.setActive(true);
 			mStart.setEnabled(false);
-			/*
-			toast = Toast.makeText(getApplicationContext(),
-				     "您投出的数字是"+mRandom, Toast.LENGTH_LONG);
-				   toast.setGravity(Gravity.CENTER, 0, 0);
-				   LinearLayout toastView = (LinearLayout) toast.getView();
-				   ImageView imageCodeProject = new ImageView(getApplicationContext());
-				   imageCodeProject.setImageResource(R.drawable.number);
-				   toastView.addView(imageCodeProject, 0);
-				   toast.setDuration(0);
-				   toast.show(); 
-				    */
 			
-			/*LayoutInflater inflater = getLayoutInflater();
-			   View layout = inflater.inflate(R.layout.dialog2,
-			     (ViewGroup) findViewById(R.layout.dialog2));
-
-
-
-			   new AlertDialog.Builder(this).setTitle("电脑华丽的掷出了"+mRandom + "= =").setView(layout)
-			     .setNeutralButton("ok", new DialogInterface.OnClickListener() {  
-    	           public void onClick(DialogInterface dialog, int id) {  
-    	        	  Twinkle();
-    	           }  
-    	       })
-			     .show();*/
-
 	
 			   if(StartActivity.soundOn == true)
 				{

@@ -32,8 +32,6 @@ public class StartActivity extends Activity {
 	private ImageButton mButton3;
 	private ImageButton mSet;
 	private ImageButton mHelp;
-	//private ImageButton mButton4;
-	//private ImageButton mButton5;
 	OnClickListener btnClick;
 	OnClickListener btnClick2;
 	OnClickListener btnClick3;
@@ -50,8 +48,6 @@ public class StartActivity extends Activity {
 		mButton3 = (ImageButton)findViewById(R.id.imageButton3 );
 		mSet = (ImageButton)findViewById(R.id.set);
 		mHelp = (ImageButton)findViewById(R.id.help);
-		//mButton4 = (ImageButton)findViewById(R.id.imageButton4 );
-		//mButton5 = (ImageButton)findViewById(R.id.imageButton5 );
 		final Intent intent3 = new Intent(); 
 		intent3.setClass(this, PlayActivitySingle.class);
 		
@@ -81,30 +77,25 @@ public class StartActivity extends Activity {
 		btnClick4 = new OnClickListener(){
 			public void onClick(View v){
 				
-				new AlertDialog.Builder(StartActivity.this).setTitle("音效").setItems(
-					     new String[] { "您是否需要开启音效呢"}, null)
-					     .setPositiveButton("开启", new DialogInterface.OnClickListener() {  
+				new AlertDialog.Builder(StartActivity.this).setTitle("Sound Effect").setItems(
+					     new String[] { "Open Sound Effect?"}, null)
+					     .setPositiveButton("On", new DialogInterface.OnClickListener() {  
 			    	           public void onClick(DialogInterface dialog, int id) {  
 			     	        	  soundOn = true;
 			     	           }  
 			     	       })
-					     .setNegativeButton("关闭", new DialogInterface.OnClickListener() {  
+					     .setNegativeButton("Off", new DialogInterface.OnClickListener() {  
 			    	           public void onClick(DialogInterface dialog, int id) {  
 			    	        	   soundOn = false;
 			     	           }  
 			     	       }).show();
 			     	       
-				/*
-				new AlertDialog.Builder(StartActivity.this).setTitle("列表框").setItems(
-					     new String[] { "Item1", "Item2" }, null).setNegativeButton(
-					     "确定", null).show(); 
-					     */
         		}
 		};
 		btnClick5 = new OnClickListener(){
 			public void onClick(View v){
 				AlertDialog.Builder builder = new AlertDialog.Builder(StartActivity.this);
-				builder.setTitle("帮助和关于") 
+				builder.setTitle("Help and About") 
 			       .setMessage("一、游戏规则：" + "\n" + "1.一共有九个饼干，每个饼干有一个值，称为‘饼干值’"
 			    			+ "\n" + "2.点击‘开始’可以获得一个1-8的随机数。选取两个相邻的饼干，将这个数字加到饼干值上" + "\n"
 			    			+ "3.当饼干值达到9时，当前玩家可以得1分，该饼干被吃掉。超过9时则取个位数（生存模式计分方式不同）" 
